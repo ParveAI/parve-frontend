@@ -1,0 +1,1 @@
+export { useTyped } from "./useTyped";
