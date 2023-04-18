@@ -11,13 +11,12 @@ const ButtonInterface = styled.a`
   padding: 8px 16px;
   border-radius: 6px;
   gap: 4px;
-  height: 40px;
+  min-height: 40px;
 `;
 
 export const ButtonContent = styled(ButtonInterface)`
   background: rgba(226, 240, 253, 0.082);
   border: 1px solid rgba(223, 239, 254, 0.137);
-
 
   color: rgba(239, 247, 255, 0.616);
 
@@ -78,6 +77,46 @@ export const HighlightedButtonContent = styled(ButtonInterface)`
     align-items: center;
     justify-content: center;
     color: rgba(239, 247, 255, 0.616);
-    background-color: red;
+  }
+`;
+
+export const SubmitButtonContent = styled.button`
+  cursor: pointer;
+  min-height: 40px;
+  width: 100%;
+
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(229, 231, 235, 0.7)	;
+  border-radius: 6px;
+  transition: 300ms ease-in-out background-color;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
+  & > .title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+  }
+
+  & > .children {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgba(239, 247, 255, 0.616);
   }
 `;

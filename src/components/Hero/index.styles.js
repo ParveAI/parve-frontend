@@ -110,8 +110,8 @@ export const BottomContent = styled.div`
   background-image: url("../assets/hero-texture.png");
   @media (max-width: 768px) {
     width: 100%;
-    padding-top: 0;
-    margin-top: 20px;
+    padding-top: 35px;
+    margin-top: 0;
     height: 13rem;
     overflow: hidden;
   }
