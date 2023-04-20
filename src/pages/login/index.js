@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <Container>
       <TopBar>
-        <Button as={Link} href="/" title={"Home"} reverseOrder>
+        <Button as={Link} href="/" title={"Home "} reverseOrder>
           <RightArrow style={{ transform: "rotate(180deg)" }} />
         </Button>
       </TopBar>
