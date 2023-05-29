@@ -16,7 +16,7 @@ export default function Navbar() {
         <Button title={"Sign in"} as={Link} href="/login">
           <RightArrow />
         </Button>
-        <HighlightedButton title={"Just Parve It"} as={Link} href="/perve-it" />
+        <HighlightedButton title={"Just Parve It"} as={Link} href="/parve-it" />
       </RightSide>
     </NavbarContent>
   );

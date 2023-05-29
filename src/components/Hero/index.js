@@ -13,6 +13,7 @@ import TextureSource from "../../assets/hero-texture.png";
 import { HighlightedButton } from "@/shared/Button";
 
 import { useTyped } from "@/hooks";
+import Link from "next/link";
 
 export default function Hero() {
   const typedOptions = {
@@ -51,7 +52,7 @@ export default function Hero() {
             placeholder="blur"
             draggable={false}
           />
-          <HighlightedButton title={"Get Started"} />
+          <HighlightedButton title={"Get Started"} as={Link} href="/parve-it" />
         </BottomContent>
       </HeroSection>
     </>
