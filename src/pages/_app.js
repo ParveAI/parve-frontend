@@ -4,7 +4,6 @@ import Layout from "@/shared/Layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/config/ThemeConfig";
 
-import "@/styles/reset.css";
 import "@/styles/globals.css";
 import "@/styles/fonts.css";
 

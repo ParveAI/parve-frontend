@@ -1,21 +1,14 @@
 import styled from "styled-components";
 
-export const FormContent = styled.div`
+export const UploadContent = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  background-color: black;
-`;
+  align-items: center;
 
-export const FormTitle = styled.h1`
-  margin: 30px 0;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.16px;
-  color: rgba(253, 254, 255, 0.925);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1.6px dashed rgba(191, 191, 191, 0.45);
+  border-radius: 4px;
+
 `;

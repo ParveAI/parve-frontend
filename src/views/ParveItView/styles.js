@@ -3,13 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: red;
   margin-top: 85px;
-`;
-
-export const Title = styled.h1`
-  font-size: 45px;
-  background-color: red;
 `;
 
 export const Boxes = styled.div`

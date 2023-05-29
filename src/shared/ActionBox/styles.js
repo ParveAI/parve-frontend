@@ -63,7 +63,6 @@ export const Body = styled.div`
   flex: 1;
   width: 100%;
   height: 90px;
-  background-color: red;
 `;
 
 export const Foot = styled.div`
