@@ -8,7 +8,7 @@ export const useTyped = (strings= ["Add a strings array", "in this hook."], opti
     const typed = new Typed(ref.current, {
       strings,
       typeSpeed: 50,
-      ...options
+      ...options,
     });
 
     return () => {

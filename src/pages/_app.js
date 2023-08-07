@@ -1,16 +1,13 @@
 import { useRouter } from "next/router";
 import Layout from "@/shared/Layout";
 
-import { ThemeProvider } from "styled-components";
-import { theme } from "@/config/ThemeConfig";
-
 import "@/styles/globals.css";
 import "@/styles/fonts.css";
 
 const outOfLayoutRoutes = ["/login"];
 
 const Providers = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return <>{children}</>;
 };
 
 export default function App({ Component, pageProps }) {

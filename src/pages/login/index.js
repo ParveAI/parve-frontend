@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styled from "styled-components";
 
 import { RightArrow } from "@/components/icons";
 import { Button } from "@/shared/Button";
@@ -7,59 +6,15 @@ import SignupForm from "@/components/SignupForm";
 
 export default function Login() {
   return (
-    <Container>
-      <TopBar>
-        <Button as={Link} href="/" title={"Home "} reverseOrder>
-          <RightArrow style={{ transform: "rotate(180deg)" }} />
+    <div className="flex flex-col items-center justify-start min-h-screen bg-black">
+      <div className="w-full h-[80px] flex items-center justify-start px-3 sm:px-2 md:px-3 z-50">
+        <Button as={Link} href="/" title={" Home"} reverse>
+          <RightArrow className="transform rotate-180" />
         </Button>
-      </TopBar>
-      <InnerContent>
+      </div>
+      <div className="flex-1 min-h-0 max-w-[500px] w-full flex flex-col items-center justify-center max-md:p-6">
         <SignupForm />
-      </InnerContent>
-    </Container>
+      </div>
+    </div>
   );
 }
-
-const Container = styled.div`
-  flex: 1;
-  width: 100%;
-  min-height: fit-content;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: black;
-`;
-
-const TopBar = styled.div`
-  min-height: 80px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 3rem;
-  z-index: 999;
-
-  @media (max-width: 1200px) {
-    padding: 0 3rem;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0 2rem;
-  }
-`;
-
-const InnerContent = styled.div`
-  flex: 1;
-  min-height: calc(100% - 70px);
-  min-height: fit-content;
-  max-width: 500px;
-  padding: 20px 20px 100px 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;

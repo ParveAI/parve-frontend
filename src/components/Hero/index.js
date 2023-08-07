@@ -1,25 +1,18 @@
-import {
-  BackgroundContent,
-  HeroImage,
-  HeroSection,
-  HeroTitle,
-  HeroDesc,
-  BottomContent,
-  Texture,
-} from "./index.styles";
+import Link from "next/link";
+import Image from "next/image";
+import HeroTexture from "@/assets/hero-texture.png";
 
-import HeroImageSource from "../../assets/hero-image.png";
-import TextureSource from "../../assets/hero-texture.png";
+import HeroImageSource from "@/assets/hero-image.png";
 import { HighlightedButton } from "@/shared/Button";
 
 import { useTyped } from "@/hooks";
-import Link from "next/link";
 
 export default function Hero() {
   const typedOptions = {
     backSpeed: 50,
     backDelay: 1500,
     loop: true,
+    showCursor: false,
   };
 
   const ref = useTyped(
@@ -29,32 +22,42 @@ export default function Hero() {
 
   return (
     <>
-      <BackgroundContent>
-        <HeroImage
+      <div className="absolute top-0 left-0 right-0 flex flex-col items-center justify-start w-full min-h-[95vh] overflow-hidden z-1">
+        <div className="absolute w-full min-h-[95vh] bg-gradient-to-t from-black to-transparent z-20"></div>
+        <Image
           src={HeroImageSource}
           alt="Hero Image"
+          className="absolute w-full min-h-[95vh] object-cover opacity-40 z-10"
           placeholder="blur"
           sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+                  (max-width: 1200px) 50vw,
+                  33vw"
         />
-      </BackgroundContent>
-      <HeroSection>
-        <HeroTitle ref={ref}>Introducing Parve AI</HeroTitle>
-        <HeroDesc>
+      </div>
+      <div className="relative z-30 w-full h-[95vh] flex flex-col items-center justify-end ">
+        <div className="inline-block w-[100%] max-w-[50%] text-center text-white opacity-92 max-md:max-w-[90%]">
+          <h1
+            ref={ref}
+            className="inline-block font-[CabinetGrotesk-ExtraBold] text-8xl leading-none max-xl:text-[3rem]"
+          >
+            Introducing Parve AI
+          </h1>
+        </div>
+        <h4 className="mt-6 max-w-xl font-semibold text-lg leading-relaxed text-center text-white max-md:max-w-full max-md:px-14 max-md:text-sm max-md:mt-4">
           Say goodbye to manual transcription and hello to effortless efficiency
           using cutting-edge AI technology.
-        </HeroDesc>
-        <BottomContent>
-          <Texture
-            src={TextureSource}
+        </h4>
+        <div className="relative z-1 w-[80%] h-[30%] mt-[-5] flex flex-col items-center justify-start pt-16 bg-hero-texture max-md:w-full max-md:pt-8 sm:mt-0 max-md:h-[13rem] max-md:overflow-hidden max-md:justify-center">
+          <Image
+            src={HeroTexture}
             alt="Texture"
+            className="absolute top-0 w-full h-full mt-[-5] object-contain opacity-30 z-[-1] max-md:mt-5 max-md:w-[250%]"
             placeholder="blur"
             draggable={false}
           />
           <HighlightedButton title={"Get Started"} as={Link} href="/parve-it" />
-        </BottomContent>
-      </HeroSection>
+        </div>
+      </div>
     </>
   );
 }

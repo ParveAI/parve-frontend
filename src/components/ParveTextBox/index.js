@@ -1,8 +1,6 @@
 import ActionBox from "@/shared/ActionBox";
 import { Magic } from "@/components/icons";
 
-import { TextArea } from "./styles";
-
 import { useState } from "react";
 
 const ParveTextBox = ({ initialText }) => {
@@ -15,7 +13,12 @@ const ParveTextBox = ({ initialText }) => {
       buttonTitle="Solve it"
       buttonHandler={() => alert("Photo Uploaded")}
     >
-      <TextArea onChange={(e) => setText(e.target.value)}>{text}</TextArea>
+      <textarea
+        className="w-full h-full resize-y bg-white/[0.02] rounded-lg border-[1px] border-white/[0.2] p-5 font-sans font-normal text-[1rem] leading-relaxed text-white"
+        onChange={(e) => setText(e.target.value)}
+      >
+        {text}
+      </textarea>
     </ActionBox>
   );
 };

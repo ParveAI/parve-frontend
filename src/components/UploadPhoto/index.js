@@ -1,7 +1,6 @@
 import ActionBox from "@/shared/ActionBox";
 import { Magic } from "@/components/icons";
 
-import { UploadContent } from "./styles";
 
 const UploadPhoto = () => {
   return (
@@ -12,7 +11,9 @@ const UploadPhoto = () => {
       buttonTitle="Parse it"
       buttonHandler={() => alert("Photo Uploaded")}
     >
-      <UploadContent>Upload Photo</UploadContent>
+      <div className="w-full h-full flex items-center justify-center bg-black/40 rounded-lg border-[1.6px] border-dashed border-[rgba(191,191,191,0.45)]">
+        Upload Photo
+      </div>
     </ActionBox>
   );
 };

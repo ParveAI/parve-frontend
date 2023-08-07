@@ -16,8 +16,8 @@ export default function SignupForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <SubmitButton title={"Continue"} style={{ marginTop: "20px" }} >
-        <RightArrow color="black"/>
+      <SubmitButton title={"Continue"} className="mt-5">
+        <RightArrow color="black" />
       </SubmitButton>
     </FormLayout>
   );

@@ -1,38 +1,65 @@
-import { ButtonContent, HighlightedButtonContent,SubmitButtonContent } from "./styles";
+import classNames from "classnames";
 
-export const Button = ({ title, reverseOrder, children, ...props }) => {
+export const Button = ({
+  as = "button",
+  href,
+  title,
+  reverse,
+  children,
+  className,
+  ...props
+}) => {
+  const As = as;
   return (
-    <ButtonContent reverseOrder={reverseOrder} {...props}>
+    <As
+      href={href}
+      className={classNames("btn-primary", { reverse: reverse }, className)}
+      {...props}
+    >
       <div className="title">{title}</div>
       {children && <div className="children">{children}</div>}
-    </ButtonContent>
+    </As>
   );
 };
 
 export const HighlightedButton = ({
+  as = "button",
+  href,
   title,
-  reverseOrder,
+  reverse,
+  className,
   children,
   ...props
 }) => {
+  const As = as;
   return (
-    <HighlightedButtonContent reverseOrder={reverseOrder} {...props}>
+    <As
+      href={href}
+      className={classNames("btn-highlighted", { reverse: reverse }, className)}
+      {...props}
+    >
       <div className="title">{title}</div>
       {children && <div className="children">{children}</div>}
-    </HighlightedButtonContent>
+    </As>
   );
 };
 
 export const SubmitButton = ({
   title,
-  reverseOrder,
+  reverse,
+  className,
   children,
   ...props
 }) => {
   return (
-    <SubmitButtonContent reverseOrder={reverseOrder} {...props}>
-      <div className="title">{title}</div>
-      {children && <div className="children">{children}</div>}
-    </SubmitButtonContent>
+    <>
+      <div
+        className={classNames("btn-submit", { reverse: reverse }, className)}
+        {...props}
+      >
+        <div className="title">{title}</div>
+        {children && <div className="children">{children}</div>}
+      </div>
+    </>
   );
 };
