@@ -11,7 +11,7 @@ export default function Navbar({ auth, logout }) {
   const openModal = useModal((state) => state.openModal);
 
   return (
-    <div className="fixed min-h-[85px] w-full flex flex-row items-center justify-between px-16 z-[99] max-xl:px-12 max-md:px-8">
+    <div className="fixed min-h-[85px] w-full flex flex-row items-center justify-between px-16 z-[99] max-xl:px-12 max-md:px-7">
       <Link href="/" className="h-8 w-32 cursor-pointer">
         <Image src={ParveLogo} alt="Logo" height={30} width={120} />
       </Link>

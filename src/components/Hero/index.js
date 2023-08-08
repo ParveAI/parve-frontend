@@ -3,7 +3,7 @@ import Image from "next/image";
 import HeroTexture from "@/assets/hero-texture.png";
 
 import HeroImageSource from "@/assets/hero-image.png";
-import { HighlightedButton } from "@/shared/Button";
+import { Button, HighlightedButton } from "@/shared/Button";
 
 import { useTyped } from "@/hooks";
 
@@ -47,7 +47,7 @@ export default function Hero() {
           Say goodbye to manual transcription and hello to effortless efficiency
           using cutting-edge AI technology.
         </h4>
-        <div className="relative z-1 w-[80%] h-[30%] mt-[-5] flex flex-col items-center justify-start pt-16 bg-hero-texture max-md:w-full max-md:pt-8 sm:mt-0 max-md:h-[13rem] max-md:overflow-hidden max-md:justify-center">
+        <div className="relative z-1 w-[80%] h-[30%] mt-[-5] flex flex-col items-center justify-start pt-16 bg-hero-texture max-md:w-full max-md:pt-6 sm:mt-0 max-md:h-[10rem] max-md:overflow-hidden max-md:justify-center">
           <Image
             src={HeroTexture}
             alt="Texture"
@@ -55,7 +55,12 @@ export default function Hero() {
             placeholder="blur"
             draggable={false}
           />
-          <HighlightedButton title={"Get Started"} as={Link} href="/parve-it" />
+          <Button
+            title={"Get Started"}
+            as={Link}
+            href="/parve-it"
+            className="bg-main text-white font-bold border-none"
+          />
         </div>
       </div>
     </>

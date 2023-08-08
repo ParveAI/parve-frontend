@@ -1,6 +1,13 @@
-import { CloseButton, SubmitButton } from "@/shared/Button";
+import {
+  Button,
+  CloseButton,
+  HighlightedButton,
+  SubmitButton,
+} from "@/shared/Button";
+import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 export default function UserInfoModal({ user, logout, closeModal, ...props }) {
+  const router = useRouter();
   return (
     <div className="relative w-[450px] rounded-xl bg-[#282828] px-10 py-8 max-md:w-[88vw] max-md:py-9 max-md:px-7">
       <CloseButton onClick={closeModal} />
@@ -18,8 +25,17 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
             {user?.email}
           </h1>
         </div>
-        <SubmitButton
+        <HighlightedButton
+          title={"Just Parve It"}
+          className="w-full"
+          onClick={() => {
+            router.push("/parve-it");
+            closeModal();
+          }}
+        />
+        <Button
           title={"Sign out!"}
+          className="w-full bg-zinc-900 text-white border-none"
           onClick={() => {
             logout();
             closeModal();
