@@ -1,15 +1,18 @@
-import { useModal } from "@/context/ModalContext";
+import { useState } from "react";
 import { useFormik } from "formik";
+import { toast } from "react-hot-toast";
+
+import { AuthServices } from "@/services";
+import { useAuth } from "@/context/AuthContext";
+import { useModal } from "@/context/ModalContext";
 
 import FormLayout from "@/shared/FormLayout";
 import { PasswordInput, TextInput } from "@/shared/Input";
-import { Button } from "@/shared/Button";
+import { ButtonWithLoader } from "@/shared/Button";
 import { Close, RightArrow } from "@/components/icons";
-import { useAuth } from "@/context/AuthContext";
 
 export default function RegisterModal({ closeModal, ...props }) {
-  const setUser = useAuth((state) => state.setUser);
-  const setToken = useAuth((state) => state.setToken);
+  const [isLoading, setIsLoading] = useState(false);
   const openModal = useModal((state) => state.openModal);
 
   const { values, handleSubmit, handleChange } = useFormik({
@@ -20,30 +23,28 @@ export default function RegisterModal({ closeModal, ...props }) {
       confirmPassword: "",
     },
     onSubmit: (values) => {
-      var raw = {
-        fullName: values?.fullName,
+      if (values.password !== values.confirmPassword) {
+        toast.error("Passwords do not match!");
+        return;
+      }
+      setIsLoading(true);
+      AuthServices.register({
+        fullName: values.fullName,
         email: values.email,
         password: values.password,
-      };
-
-      var requestOptions = {
-        method: "POST",
-        body: JSON.stringify(raw),
-        redirect: "follow",
-      };
-
-      fetch(
-        "https://parve-backend.ahmetcanisik5458675.workers.dev/user/signup",
-        requestOptions
-      )
-        .then((response) => response.text())
+      })
         .then((result) => {
-          console.log(result);
-          closeModal();
+          if (result?.token) {
+            toast.success("Registered successfully!");
+            openModal("Login", { values: { email: values.email } });
+          }
         })
-        .catch((error) => console.log("error", error));
-      // alert(JSON.stringify(values, null, 2));
-      // closeModal();
+        .catch((error) => {
+          toast.error(error?.error?.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     },
   });
 
@@ -62,6 +63,8 @@ export default function RegisterModal({ closeModal, ...props }) {
             placeholder={"Alan Turing"}
             value={values.fullName}
             onChange={handleChange}
+            minlength="2"
+            required
           />
           <TextInput
             id="email"
@@ -70,26 +73,32 @@ export default function RegisterModal({ closeModal, ...props }) {
             placeholder={"alan.turing@example.com"}
             value={values.email}
             onChange={handleChange}
+            required
           />
           <PasswordInput
             id="password"
             label={"Password"}
             value={values.password}
             onChange={handleChange}
+            minlength="6"
+            required
           />
           <PasswordInput
             id="confirmPassword"
             label={"Confirm Password"}
             value={values.confirmPassword}
             onChange={handleChange}
+            minlength="6"
+            required
           />
-          <Button
+          <ButtonWithLoader
+            isLoading={isLoading}
             title={"Register"}
             type="submit"
             className="mt-3 w-full bg-black text-white"
           >
             <RightArrow />
-          </Button>
+          </ButtonWithLoader>
         </form>
         <button
           type="button"

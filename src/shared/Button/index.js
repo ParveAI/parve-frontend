@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { Close } from "@/components/icons";
 
 export const Button = ({
   as = "button",
@@ -61,5 +62,35 @@ export const SubmitButton = ({
         {children && <div className="children">{children}</div>}
       </div>
     </>
+  );
+};
+
+export const ButtonWithLoader = ({ isLoading, children, ...props }) => {
+  return (
+    <Button {...props} title={!isLoading && props?.title} disabled={isLoading}>
+      {isLoading ? (
+        <div
+          className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-main border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
+      ) : (
+        children
+      )}
+    </Button>
+  );
+};
+
+export const CloseButton = (props) => {
+  return (
+    <div
+      {...props}
+      className="absolute top-4 right-4 w-8 h-8 cursor-pointer bg-black rounded-full flex items-center justify-center transition-colors hover:bg-[#181818]"
+    >
+      <Close className="scale-90" fill="white" />
+    </div>
   );
 };

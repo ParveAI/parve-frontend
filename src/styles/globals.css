@@ -14,11 +14,8 @@
 }
 
 @layer components {
-  .btn-base.reverse {
-    @apply flex-row-reverse;
-  }
   .btn-base {
-    @apply no-underline cursor-pointer flex items-center justify-center px-4 py-2 rounded-md gap-2 min-h-[40px];
+    @apply no-underline cursor-pointer flex items-center justify-center px-4 py-2 rounded-md gap-2 min-h-[40px] disabled:cursor-not-allowed disabled:bg-zinc-900 disabled:text-zinc-500;
     transition: 300ms ease-in-out background-color;
     & > .title {
       @apply font-["Inter"] font-semibold text-sm flex items-center justify-center text-center;
@@ -26,6 +23,9 @@
     & > .children {
       @apply flex items-center justify-center text-center text-[rgba(239,247,255,0.616)];
     }
+  }
+  .btn-base.reverse {
+    @apply flex-row-reverse;
   }
   .btn-primary {
     @apply btn-base bg-[rgba(226,240,253,0.082)] text-[rgba(239,247,255,0.616)] border-[1px] border-[rgba(223,239,254,0.137)];
@@ -47,7 +47,6 @@
     }
   }
 }
-
 
 * {
   box-sizing: border-box;
@@ -74,7 +73,6 @@ code {
     monospace;
 }
 
-
 .ReactModal__Overlay {
   opacity: 0;
   transition: all 500ms ease-in-out;
@@ -87,7 +85,6 @@ code {
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
-
 
 /* 
 body::-webkit-scrollbar {
