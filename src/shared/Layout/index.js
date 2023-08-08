@@ -3,7 +3,6 @@ import { useAuth } from "@/context/AuthContext";
 
 import Navbar from "@/components/Navbar";
 import Modal from "@/modals";
-import ToastWrapper from "@/shared/ToastWrapper";
 
 export default function Layout({ children }) {
   const [auth, setAuth] = useState(null);
@@ -28,7 +27,6 @@ export default function Layout({ children }) {
       <Modal />
       <Navbar auth={auth} logout={logout} />
       {children}
-      <ToastWrapper />
     </LayoutContent>
   );
 }

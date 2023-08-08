@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Modal from "react-modal";
 import { useModal } from "@/context/ModalContext";
 
@@ -31,6 +32,11 @@ const customStyles = {
 export default function ModalWrapper({ children }) {
   const isOpen = useModal((state) => state.modal.isOpen);
   const closeModal = useModal((state) => state.closeModal);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "unset");
+  }, []);
 
   return (
     <Modal
