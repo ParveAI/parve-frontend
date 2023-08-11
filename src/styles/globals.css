@@ -15,7 +15,7 @@
 
 @layer components {
   .btn-base {
-    @apply no-underline cursor-pointer flex items-center justify-center px-4 py-2 rounded-md gap-2 min-h-[40px] disabled:cursor-not-allowed disabled:bg-zinc-900 disabled:text-zinc-500;
+    @apply no-underline cursor-pointer flex items-center justify-center px-4 py-2 rounded-md gap-2 min-h-[40px] disabled:cursor-not-allowed disabled:bg-zinc-900 disabled:text-zinc-500 disabled:min-h-[42px];
     transition: 300ms ease-in-out background-color;
     & > .title {
       @apply font-["Inter"] font-semibold text-sm flex items-center justify-center text-center;

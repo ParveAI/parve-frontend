@@ -17,7 +17,7 @@ export const Button = ({
       className={classNames("btn-primary", { reverse: reverse }, className)}
       {...props}
     >
-      <div className="title">{title}</div>
+      {title && <div className="title">{title}</div>}
       {children && <div className="children">{children}</div>}
     </As>
   );
@@ -39,7 +39,7 @@ export const HighlightedButton = ({
       className={classNames("btn-highlighted", { reverse: reverse }, className)}
       {...props}
     >
-      <div className="title">{title}</div>
+      {title && <div className="title">{title}</div>}
       {children && <div className="children">{children}</div>}
     </As>
   );
@@ -58,7 +58,7 @@ export const SubmitButton = ({
         className={classNames("btn-submit", { reverse: reverse }, className)}
         {...props}
       >
-        <div className="title">{title}</div>
+        {title && <div className="title">{title}</div>}
         {children && <div className="children">{children}</div>}
       </div>
     </>
@@ -70,7 +70,7 @@ export const ButtonWithLoader = ({ isLoading, children, ...props }) => {
     <Button {...props} title={!isLoading && props?.title} disabled={isLoading}>
       {isLoading ? (
         <div
-          className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-main border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          className="inline-block h-[21px] w-[21px] animate-spin rounded-full border-2 border-solid border-main border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"
           role="status"
         >
           <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
