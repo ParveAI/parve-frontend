@@ -1,18 +1,20 @@
-import {
-  Button,
-  CloseButton,
-  HighlightedButton,
-  SubmitButton,
-} from "@/shared/Button";
+import { Button, CloseButton, HighlightedButton } from "@/shared/Button";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+
 export default function UserInfoModal({ user, logout, closeModal, ...props }) {
   const router = useRouter();
   return (
     <div className="relative w-[450px] rounded-xl bg-[#282828] px-10 py-8 max-md:w-[88vw] max-md:py-9 max-md:px-7">
       <CloseButton onClick={closeModal} />
       <div className="w-full flex flex-col items-center justify-start gap-5">
-        <div className="w-full flex flex-col items-center justify-start py-4 gap-4 rounded-md bg-white/5">
+        <button
+          onClick={() => {
+            router.push(`/profile/${user?.email}`);
+            closeModal();
+          }}
+          className="w-full flex flex-col items-center justify-start py-4 gap-4 rounded-md bg-white/5"
+        >
           <img
             src={
               user?.avatar ||
@@ -24,12 +26,20 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
           <h1 className="text-white text-xl font-semibold max-md:text-base">
             {user?.email}
           </h1>
-        </div>
+        </button>
         <HighlightedButton
           title={"Just Parve It"}
           className="w-full"
           onClick={() => {
             router.push("/parve-it");
+            closeModal();
+          }}
+        />
+        <HighlightedButton
+          title={"Playground"}
+          className="w-full"
+          onClick={() => {
+            router.push("/playground");
             closeModal();
           }}
         />
