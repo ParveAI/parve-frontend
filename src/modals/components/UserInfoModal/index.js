@@ -10,7 +10,7 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
       <div className="w-full flex flex-col items-center justify-start gap-5">
         <button
           onClick={() => {
-            router.push(`/profile/${user?.email}`);
+            router.push(`/profile/${user?.id}`);
             closeModal();
           }}
           className="w-full flex flex-col items-center justify-start py-4 gap-4 rounded-md bg-white/5"
@@ -49,6 +49,7 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
           onClick={() => {
             logout();
             closeModal();
+            router.push("/");
             toast.success("Logged out successfully!");
           }}
         />

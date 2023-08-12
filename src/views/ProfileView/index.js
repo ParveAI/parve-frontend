@@ -2,16 +2,25 @@ import { Dots } from "@/components/icons";
 import Link from "next/link";
 
 const ProfileView = ({ user }) => {
-  const fullName = "John Doe loremasdf asdf asdf asdf asdf as dfas df asdf s";
-  const username = "johndoe";
+  if (!user) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="font-[CabinetGrotesk-ExtraBold] animate-pulse text-white text-4xl font-bold max-md:text-2xl">
+          Loading Profile...
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="relative  w-full flex flex-col items-center justify-start">
-      <div className="relative w-full min-h-[300px] bg-gradient-to-r to-[#92FE9D] from-[#00C9FF] z-0 before:absolute before:z-20 before:inset-0 before:w-full before:h-[60%] before:bg-gradient-to-b before:from-black/60 before:to-[90%] before:to-transparent max-md:min-h-[250px]">
-        {/* <img
-          src="https://via.placeholder.com/1920x1080"
-          alt="image"
-          className="absolute inset-0 object-cover w-full h-full z-1"
-        /> */}
+      <div className="relative w-full min-h-[300px] bg-gradient-to-r to-[#92FE9D] from-[#00C9FF] z-0  max-md:min-h-[250px]">
+        {user?.banner && (
+          <img
+            src={user?.banner}
+            alt="image"
+            className="absolute inset-0 object-cover w-full h-full z-1"
+          />
+        )}
       </div>
       <div className="container flex flex-row items-start justify-center gap-4 z-10 max-lg:flex-col max-md:px-6 max-md:gap-8">
         <div className="max-w-[400px] w-full mt-[-65px] pl-12 max-md:max-w-full max-md:pl-0">
@@ -24,13 +33,13 @@ const ProfileView = ({ user }) => {
           </div>
           <div className="w-full flex flex-col items-start justify-center mt-3">
             <h1
-              title={fullName}
+              title={user?.email}
               className="font-[CabinetGrotesk-ExtraBold] text-3xl font-bold text-white pr-12 line-clamp-1"
             >
-              {fullName}
+              {user?.email}
             </h1>
             <h2 className="font-[CabinetGrotesk-Bold] text-xl font-medium text-zinc-300 pr-12 line-clamp-1 max-md:text-lg">
-              @{username}
+              @{user?.username}
             </h2>
           </div>
           <div>

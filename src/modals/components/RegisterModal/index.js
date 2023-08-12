@@ -27,6 +27,7 @@ export const RegisterContent = ({ isModal, closeModal, ...props }) => {
 
   const { values, handleSubmit, handleChange } = useFormik({
     initialValues: {
+      username: "",
       fullName: "",
       email: props?.values?.email ? props?.values?.email : "",
       password: "",
@@ -39,6 +40,7 @@ export const RegisterContent = ({ isModal, closeModal, ...props }) => {
       }
       setIsLoading(true);
       AuthServices.register({
+        username: values.username,
         fullName: values.fullName,
         email: values.email,
         password: values.password,
@@ -67,6 +69,16 @@ export const RegisterContent = ({ isModal, closeModal, ...props }) => {
         onSubmit={handleSubmit}
         className="w-full flex flex-col items-center justify-start gap-4"
       >
+        <TextInput
+          id="username"
+          type={"text"}
+          label={"Username"}
+          placeholder={"alanturing"}
+          value={values.username}
+          onChange={handleChange}
+          minLength="2"
+          required
+        />
         <TextInput
           id="fullName"
           type={"text"}
