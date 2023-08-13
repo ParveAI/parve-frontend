@@ -57,6 +57,8 @@ export default function CropperView() {
     }
   };
 
+  console.log(crop);
+
   const onLoad = useCallback((img) => {
     imgRef.current = upImg;
   }, []);
@@ -65,20 +67,6 @@ export default function CropperView() {
     console.log(previewCanvasRef);
 
     canvasPreview(imgRef.current, previewCanvasRef.current, completedCrop);
-    // previewCanvasRef?.current?.toBlob(
-    //   (blob) => {
-    //     const previewUrl = window.URL.createObjectURL(blob);
-    //     console.log(previewUrl);
-    //     // const anchor = document.createElement('a');
-    //     // anchor.download = 'cropPreview.png';
-    //     // anchor.href = URL.createObjectURL(blob);
-    //     // anchor.click();
-
-    //     // window.URL.revokeObjectURL(previewUrl);
-    //   },
-    //   "image/png",
-    //   1
-    // );
   }, [completedCrop]);
 
   return (
