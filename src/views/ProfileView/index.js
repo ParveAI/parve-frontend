@@ -33,10 +33,10 @@ const ProfileView = ({ user }) => {
           </div>
           <div className="w-full flex flex-col items-start justify-center mt-3">
             <h1
-              title={user?.email}
+              title={user?.fullname}
               className="font-[CabinetGrotesk-ExtraBold] text-3xl font-bold text-white pr-12 line-clamp-1"
             >
-              {user?.email}
+              {user?.fullname || user?.username}
             </h1>
             <h2 className="font-[CabinetGrotesk-Bold] text-xl font-medium text-zinc-300 pr-12 line-clamp-1 max-md:text-lg">
               @{user?.username}
@@ -47,7 +47,7 @@ const ProfileView = ({ user }) => {
               title="Coming Soon!"
               className="px-6 py-2 mt-3 bg-main/50 rounded-lg text-white font-bold cursor-not-allowed"
             >
-              Follow
+              {user?.isMyProfile ? "Edit Profile" : "Follow"}
             </button>
           </div>
         </div>

@@ -10,7 +10,7 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
       <div className="w-full flex flex-col items-center justify-start gap-5">
         <button
           onClick={() => {
-            router.push(`/profile/${user?.id}`);
+            router.push(`/profile/${user?.username}`);
             closeModal();
           }}
           className="w-full flex flex-col items-center justify-start py-4 gap-4 rounded-md bg-white/5"
@@ -27,14 +27,6 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
             {user?.email}
           </h1>
         </button>
-        <HighlightedButton
-          title={"Just Parve It"}
-          className="w-full"
-          onClick={() => {
-            router.push("/parve-it");
-            closeModal();
-          }}
-        />
         <HighlightedButton
           title={"Playground"}
           className="w-full"

@@ -4,3 +4,5 @@ export { default as Close } from "./Close";
 export { default as EyeOff } from "./EyeOff";
 export { default as EyeOn } from "./EyeOn";
 export { default as Dots } from "./Dots";
+export { default as Clipboard } from "./Clipboard";
+export { default as Upload } from "./Upload";

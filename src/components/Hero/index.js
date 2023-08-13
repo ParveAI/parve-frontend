@@ -58,7 +58,7 @@ export default function Hero() {
           <Button
             title={"Get Started"}
             as={Link}
-            href="/parve-it"
+            href="/playground"
             className="bg-main text-white font-bold border-none"
           />
         </div>
