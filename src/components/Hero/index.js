@@ -34,7 +34,7 @@ export default function Hero() {
                   33vw"
         />
       </div>
-      <div className="relative z-30 w-full h-[95vh] flex flex-col items-center justify-end ">
+      <div className="relative z-30 w-full h-[90vh] flex flex-col items-center justify-end">
         <div className="inline-block w-[100%] max-w-[50%] text-center text-white opacity-92 max-md:max-w-[90%]">
           <h1
             ref={ref}
@@ -43,7 +43,7 @@ export default function Hero() {
             Introducing Parve AI
           </h1>
         </div>
-        <h4 className="mt-6 max-w-xl font-semibold text-lg leading-relaxed text-center text-white max-md:max-w-full max-md:px-14 max-md:text-sm max-md:mt-4">
+        <h4 className="mt-6 max-w-xl font-semibold text-lg leading-relaxed text-center text-white max-md:max-w-full max-md:px-14 max-md:text-sm max-md:mt-4  max-md:mb-16">
           Say goodbye to manual transcription and hello to effortless efficiency
           using cutting-edge AI technology.
         </h4>
@@ -59,8 +59,11 @@ export default function Hero() {
             title={"Get Started"}
             as={Link}
             href="/playground"
-            className="bg-main text-white font-bold border-none"
+            className="bg-main text-white font-bold border-none mb-4"
           />
+          <Link href={"/about"} className="font-[CabinetGrotesk-Bold] text-base text-white font-bold bg-zinc-600/60 px-3 py-1 rounded-md cursor-pointer">
+            Learn more about Parve AI
+          </Link>
         </div>
       </div>
     </>

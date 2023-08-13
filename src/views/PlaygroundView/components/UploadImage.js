@@ -1,9 +1,15 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { Upload } from "@/components/icons";
 import { UploadServices } from "@/services";
-import { HighlightedButton } from "@/shared/Button";
+import {
+  HighlightedButton,
+  HighlightedButtonWithLoader,
+} from "@/shared/Button";
+import { useAuth } from "@/context/AuthContext";
 
-const UploadImage = () => {
+const UploadImage = ({ setTranscript }) => {
+  const token = useAuth((state) => state.token);
+  const [isLoading, setIsLoading] = useState(false);
   const [upImg, setUpImg] = useState();
   const inputRef = useRef();
 
@@ -13,37 +19,49 @@ const UploadImage = () => {
       const reader = new FileReader();
       console.log(reader.result);
       reader.addEventListener("load", () => {
-        console.log(reader.result);
-        setUpImg(reader.result?.toString() || "");
+        setUpImg(reader.result);
       });
       reader.readAsDataURL(e.target.files[0]);
     }
   };
 
-  //   useEffect(() => {
-  //     console.log(upImg);
-  //     if (!upImg && upImg === "") return;
-  //     UploadServices.imageToText(upImg)
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }, [upImg]);
   const sendImageToServer = () => {
     if (!upImg && upImg === "") return;
-    console.log(inputRef?.current?.files?.[0]);
-    UploadServices.imageToText(upImg)
-      .then((res) => {
-        console.log(res);
+    setIsLoading(true);
+    setTranscript("");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", inputRef?.current?.files?.[0]?.type);
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: inputRef?.current?.files[0],
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://parve-backend.ahmetcanisik5458675.workers.dev/image/toText",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        // if (!result?.question) return;
+
+        console.log(JSON.parse(result));
+        const resultObj = JSON.parse(result);
+        setTranscript(resultObj?.question?.ocr_text);
+        setIsLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log("error", error);
+        setIsLoading(false);
       });
   };
+
   return (
-    <>
+    <div className="w-full min-h-full flex flex-col items-center justify-start ">
       <div>
         <input
           ref={inputRef}
@@ -55,7 +73,7 @@ const UploadImage = () => {
       </div>
       <button
         onClick={() => inputRef?.current?.click()}
-        className="w-full h-[200px] mb-4 bg-black flex flex-col items-center justify-center border-dashed border-[1.8px] border-zinc-600 rounded-2xl"
+        className="w-full min-h-[200px] mb-4 bg-black flex flex-col items-center justify-center border-dashed border-[1.8px] border-zinc-600 rounded-2xl max-md:h-full"
       >
         <div className="h-14 w-14 min-h-14 min-w-14 flex items-center justify-center">
           <Upload fill="white" className="scale-[2.2]" />
@@ -64,11 +82,16 @@ const UploadImage = () => {
           Upload your image to start
         </h6>
       </button>
-      <div className="relative w-full h-fit max-h-screen bg-black rounded-2xl overflow-hidden">
-        <img src={upImg} alt="absolute inset-0 w-full h-full" />
+      <div className="relative w-full min-h-[200px] max-h-[40vh] mb-4 h-fit bg-black rounded-2xl overflow-hidden flex items-center justify-center">
+        {upImg && <img src={upImg} alt="absolute inset-0 w-full h-full" />}
       </div>
-      <HighlightedButton title={"Upload Image"} onClick={sendImageToServer} />
-    </>
+      <HighlightedButtonWithLoader
+        title={"Upload Image"}
+        onClick={sendImageToServer}
+        className="w-full"
+        isLoading={isLoading}
+      />
+    </div>
   );
 };
 

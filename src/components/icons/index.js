@@ -6,3 +6,4 @@ export { default as EyeOn } from "./EyeOn";
 export { default as Dots } from "./Dots";
 export { default as Clipboard } from "./Clipboard";
 export { default as Upload } from "./Upload";
+export { default as LinkExternal } from "./LinkExternal";

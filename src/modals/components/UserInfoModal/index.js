@@ -1,3 +1,4 @@
+import { LinkExternal } from "@/components/icons";
 import { Button, CloseButton, HighlightedButton } from "@/shared/Button";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
@@ -13,7 +14,7 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
             router.push(`/profile/${user?.username}`);
             closeModal();
           }}
-          className="w-full flex flex-col items-center justify-start py-4 gap-4 rounded-md bg-white/5"
+          className="w-full flex flex-col items-center justify-start py-4 gap-4 rounded-md bg-white/5 hover:bg-white/10 transition-colors"
         >
           <img
             src={
@@ -23,9 +24,17 @@ export default function UserInfoModal({ user, logout, closeModal, ...props }) {
             alt="avatar"
             className="w-32 h-32 rounded-full"
           />
-          <h1 className="text-white text-xl font-semibold max-md:text-base">
-            {user?.email}
-          </h1>
+          <div className="flex flex-col items-center justify-center ">
+            <h1 className="font-[CabinetGrotesk-ExtraBold] text-white text-2xl font-semibold max-md:text-xl">
+              {user?.fullname}
+            </h1>
+            <div className="flex flex-row items-center justify-center gap-1">
+              <h4 className="font-[CabinetGrotesk-Bold] text-zinc-400 text-xl font-semibold max-md:text-base">
+                @{user?.username}
+              </h4>
+              <LinkExternal fill="white" className="scale-90 translate-y-[-1.5px]" />
+            </div>
+          </div>
         </button>
         <HighlightedButton
           title={"Playground"}

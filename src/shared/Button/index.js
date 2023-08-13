@@ -65,9 +65,15 @@ export const SubmitButton = ({
   );
 };
 
-export const ButtonWithLoader = ({ isLoading, children, ...props }) => {
+export const LoaderWrapper = ({
+  as = "button",
+  isLoading,
+  children,
+  ...props
+}) => {
+  const As = as;
   return (
-    <Button {...props} title={!isLoading && props?.title} disabled={isLoading}>
+    <As {...props} title={!isLoading && props?.title} disabled={isLoading}>
       {isLoading ? (
         <div
           className="inline-block h-[21px] w-[21px] animate-spin rounded-full border-2 border-solid border-main border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"
@@ -80,8 +86,16 @@ export const ButtonWithLoader = ({ isLoading, children, ...props }) => {
       ) : (
         children
       )}
-    </Button>
+    </As>
   );
+};
+
+export const ButtonWithLoader = (props) => {
+  return <LoaderWrapper as={Button} {...props} />;
+};
+
+export const HighlightedButtonWithLoader = (props) => {
+  return <LoaderWrapper as={HighlightedButton} {...props} />;
 };
 
 export const CloseButton = (props) => {

@@ -14,7 +14,6 @@ function request(
   headers = {}
 ) {
   const token = localStorage.getItem("_token");
-  console.log(headers);
 
   return new Promise(async (resolve, reject) => {
     const options = {

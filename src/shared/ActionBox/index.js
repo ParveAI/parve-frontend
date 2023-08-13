@@ -1,5 +1,5 @@
 import { Clipboard } from "@/components/icons";
-import { HighlightedButton } from "../Button";
+import { HighlightedButtonWithLoader } from "../Button";
 
 import copy from "copy-to-clipboard";
 import { toast } from "react-hot-toast";
@@ -9,13 +9,14 @@ const ActionBox = ({
   icon = false,
   title = "Title",
   description = "Description",
-  buttonText = false,
   copyText = false,
+  buttonText = false,
+  isButtonLoading = false,
   buttonHandler = () => {},
 }) => {
   return (
     <div className="w-full min-h-full flex flex-col items-center justify-start bg-[#1a1a1a]">
-      <header className="h-[95px] w-full flex flex-row items-center justify-start gap-7 px-6 py-4 border-b-[1px] border-zinc-600">
+      <header className="h-[95px] w-full flex flex-row items-center justify-start gap-7 px-6 py-4 border-b-[1px] border-zinc-600 max-md:h-[120px]">
         <div className="w-[60%] flex flex-row items-start justify-start gap-4">
           {icon && (
             <div className="h-9 w-9 min-h-9 min-w-9 flex items-center justify-center">
@@ -33,9 +34,10 @@ const ActionBox = ({
         </div>
         {buttonText !== false && (
           <div className="flex-1 flex flex-row items-center justify-end">
-            <HighlightedButton
+            <HighlightedButtonWithLoader
               title={buttonText}
               onClick={buttonHandler}
+              isLoading={isButtonLoading}
               className="px-8 max-h-[40px] min-w-[120px]"
             />
           </div>

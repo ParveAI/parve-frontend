@@ -15,7 +15,7 @@
 
 @layer components {
   .btn-base {
-    @apply no-underline cursor-pointer flex items-center justify-center px-4 py-2 rounded-md gap-2 min-h-[40px] disabled:cursor-not-allowed disabled:bg-zinc-900 disabled:text-zinc-500 disabled:min-h-[42px];
+    @apply no-underline cursor-pointer flex items-center justify-center px-4 py-2 rounded-md gap-2 min-h-[40px] disabled:cursor-not-allowed disabled:min-h-[42px];
     transition: 300ms ease-in-out background-color;
     & > .title {
       @apply font-["Inter"] font-semibold text-sm flex items-center justify-center text-center;
@@ -28,7 +28,7 @@
     @apply flex-row-reverse;
   }
   .btn-primary {
-    @apply btn-base bg-[rgba(226,240,253,0.082)] text-[rgba(239,247,255,0.616)] border-[1px] border-[rgba(223,239,254,0.137)];
+    @apply btn-base bg-[rgba(226,240,253,0.082)] text-[rgba(239,247,255,0.616)] border-[1px] border-[rgba(223,239,254,0.137)] disabled:bg-zinc-900 disabled:text-zinc-500;
   }
   .btn-submit {
     @apply btn-base w-full bg-[rgba(255,255,255,0.7)] border-[1px] border-[rgba(229,231,235,0.7)] hover:bg-[rgba(255,255,255,0.85)];
