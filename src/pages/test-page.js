@@ -1,5 +1,6 @@
 import CropperView from "@/modals/components/UploadModal/components/CropperView";
 import Dropdown from "@/shared/Dropdown";
+import TabWrapper from "@/shared/TabWrapper";
 
 const itemsArray = [
   [
@@ -51,13 +52,14 @@ const itemsArray = [
 
 export default function TestPage() {
   return (
-    <div className="mt-[120px] flex items-center justify-center w-full h-full">
+    <div className="mt-[120px] flex items-start justify-center w-full h-full">
       {/* <CropperView /> */}
-      <Dropdown itemsArray={itemsArray}>
-        <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md focus:outline-none">
+      {/* <Dropdown itemsArray={itemsArray}>
+        <div className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md focus:outline-none">
           Dropdown
-        </button>
-      </Dropdown>
+        </div>
+      </Dropdown> */}
+      <TabWrapper />
     </div>
   );
 }
