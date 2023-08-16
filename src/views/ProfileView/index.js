@@ -1,16 +1,9 @@
 import { Dots } from "@/components/icons";
 import Link from "next/link";
+import SkeletonProfile from "./components/SkeletonProfile";
 
 const ProfileView = ({ user }) => {
-  if (!user) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="font-[CabinetGrotesk-ExtraBold] animate-pulse text-white text-4xl font-bold max-md:text-2xl">
-          Loading Profile...
-        </div>
-      </div>
-    );
-  }
+  if (!user) return <SkeletonProfile />;
   return (
     <div className="relative  w-full flex flex-col items-center justify-start">
       <div className="relative w-full min-h-[300px] bg-gradient-to-r to-[#92FE9D] from-[#00C9FF] z-0  max-md:min-h-[250px]">
