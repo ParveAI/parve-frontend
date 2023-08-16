@@ -13,7 +13,7 @@ import { RightArrow } from "@/components/icons";
 
 export default function RegisterModal({ closeModal, ...props }) {
   return (
-    <div className="relative w-[450px] rounded-xl bg-[#282828] text-white px-10 py-8 max-md:w-[88vw] max-md:py-9 max-md:px-7">
+    <div className="glow relative w-[450px] rounded-xl bg-[#282828] text-white px-10 py-8 max-md:w-[88vw] max-md:py-9 max-md:px-7">
       <CloseButton onClick={closeModal} />
       <RegisterContent isModal={true} closeModal={closeModal} {...props} />
     </div>

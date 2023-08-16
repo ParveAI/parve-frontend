@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 export default function LoginModal({ closeModal, ...props }) {
   return (
-    <div className="relative w-[450px] rounded-xl bg-[#282828] text-white px-10 py-8 max-md:w-[88vw] max-md:py-9 max-md:px-7">
+    <div className="glow relative w-[450px] rounded-xl bg-[#282828] text-white px-10 py-8 max-md:w-[88vw] max-md:py-9 max-md:px-7">
       <CloseButton onClick={closeModal} />
       <LoginContent isModal={true} closeModal={closeModal} {...props} />
     </div>
