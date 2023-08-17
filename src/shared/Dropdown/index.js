@@ -5,7 +5,7 @@ export default function Dropdown({ itemsArray, children }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button>{children}</Menu.Button>
+        <Menu.Button className={"z-0"}>{children}</Menu.Button>
       </div>
       <Transition
         as={Fragment}
@@ -16,28 +16,30 @@ export default function Dropdown({ itemsArray, children }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-600 rounded-md bg-zinc-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {itemsArray?.map((items, key) => (
-            <div className="px-1 py-1" key={key}>
-              {items.map((item, key) => (
-                <Menu.Item key={key}>
-                  {({ active }) => (
-                    <button
-                      onClick={item?.onClick}
-                      className={`${
-                        active ? "bg-main text-white" : "text-white"
-                      } group flex w-full items-center rounded-md px-2 py-2 text-sm font-medium`}
-                    >
-                      {active
-                        ? item?.activeIcon || item?.icon
-                        : item?.inactiveIcon || item?.icon}
-                      {item?.name}
-                    </button>
-                  )}
-                </Menu.Item>
-              ))}
-            </div>
-          ))}
+        <Menu.Items className="absolute z-30 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-600 rounded-md bg-zinc-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          {itemsArray &&
+            itemsArray?.map((items, key) => (
+              <div className="px-1 py-1" key={key}>
+                {items &&
+                  items?.map((item, key) => (
+                    <Menu.Item key={key}>
+                      {({ active }) => (
+                        <button
+                          onClick={item?.onClick}
+                          className={`${
+                            active ? "bg-main text-white" : "text-white"
+                          } group flex w-full items-center rounded-md px-2 py-2 gap-2 text-sm font-medium`}
+                        >
+                          {active
+                            ? item?.activeIcon || item?.icon
+                            : item?.inactiveIcon || item?.icon}
+                          {item?.name}
+                        </button>
+                      )}
+                    </Menu.Item>
+                  ))}
+              </div>
+            ))}
         </Menu.Items>
       </Transition>
     </Menu>
