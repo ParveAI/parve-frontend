@@ -81,8 +81,8 @@ export default function Collection() {
           Collection
         </title>
       </Head>
-      <div className="w-full  mt-[120px]">
-        <div className="w-full h-9 pr-24 flex flex-row items-center justify-start ">
+      <div className="w-full mt-[90px]">
+        <div className="w-full h-9 pr-24 overflow-x-auto flex flex-row items-center justify-start ">
           {collections &&
             collections?.map((tab) => (
               <TabItem
