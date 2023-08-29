@@ -11,7 +11,7 @@ export default function Navbar({ auth, logout }) {
   const openModal = useModal((state) => state.openModal);
 
   return (
-    <div className="fixed min-h-[85px] w-full flex flex-row items-center justify-between px-16 z-[99] max-xl:px-12 max-md:px-7 before:absolute before:top-0 before:left-0 before:right-0 before:w-full before:h-[120px] before:bg-gradient-to-b before:from-black/80  before:to-transparent before:z-[-1] before:select-none">
+    <div className="fixed min-h-[85px] w-full flex flex-row items-center justify-between px-16 z-[99] max-xl:px-12 max-md:px-7 before:absolute before:top-0 before:left-0 before:right-0 before:w-full before:h-[100px] before:bg-gradient-to-b before:from-black/80  before:to-transparent before:z-[-1] before:select-none">
       <Link href="/" className="h-8 w-32 cursor-pointer">
         <Image src={ParveLogo} alt="Logo" height={30} width={120} />
       </Link>
@@ -21,7 +21,7 @@ export default function Navbar({ auth, logout }) {
             onClick={() =>
               openModal("UserInfo", { user: auth?.user, logout: logout })
             }
-            className="h-10 px-3 flex flex-row items-center justify-center bg-white/10 rounded-md gap-2 max-md:bg-white/25"
+            className="backdrop-blur-xl backdrop-saturate-50 h-10 px-3 flex flex-row items-center justify-center bg-white/10 rounded-md gap-2 max-md:bg-white/25"
           >
             <img
               src={
