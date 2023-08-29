@@ -1,52 +1,44 @@
-import { useEffect } from "react";
-import Modal from "react-modal";
-import { useModal } from "@/context/ModalContext";
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
-const customStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 99999999,
-    backgroundColor: "rgba(0,0,0, 0.7)",
-    transition: "300ms all",
-    cursor: "pointer",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    border: "none",
-    padding: 0,
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "transparent",
-  },
-};
+import { useModal } from "@/context/ModalContext";
 
 export default function ModalWrapper({ children }) {
   const isOpen = useModal((state) => state.modal.isOpen);
   const closeModal = useModal((state) => state.closeModal);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => (document.body.style.overflow = "unset");
-  }, []);
-
   return (
-    <Modal
-      isOpen={isOpen}
-      closeTimeoutMS={500}
-      onRequestClose={closeModal}
-      style={customStyles}
-      ariaHideApp={false}
-    >
-      {children}
-    </Modal>
+    <Transition appear show={isOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-[9999999]" onClose={closeModal}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0 scale-20"
+          enterTo="opacity-100 scale-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black bg-opacity-75" />
+        </Transition.Child>
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center py-24">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="w-full max-w-fit overflow-hidden shadow-xl transition-all">
+                {children}
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition>
   );
 }

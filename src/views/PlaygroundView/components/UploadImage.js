@@ -1,10 +1,6 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Upload } from "@/components/icons";
-import { UploadServices } from "@/services";
-import {
-  HighlightedButton,
-  HighlightedButtonWithLoader,
-} from "@/shared/Button";
+import { HighlightedButtonWithLoader } from "@/shared/Button";
 import { useAuth } from "@/context/AuthContext";
 
 const UploadImage = ({ setTranscript }) => {

@@ -7,3 +7,5 @@ export { default as Dots } from "./Dots";
 export { default as Clipboard } from "./Clipboard";
 export { default as Upload } from "./Upload";
 export { default as LinkExternal } from "./LinkExternal";
+export { default as Expand } from "./Expand";
+export { default as Collapse } from "./Collapse";

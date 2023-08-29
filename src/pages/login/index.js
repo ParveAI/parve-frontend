@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head";
 
 import { RightArrow } from "@/components/icons";
 import { Button } from "@/shared/Button";
@@ -6,6 +7,10 @@ import { LoginContent } from "@/modals/components/LoginModal";
 
 export default function Login() {
   return (
+    <>
+     <Head>
+        <title>Login Page</title>
+      </Head>
     <div className="flex flex-col items-center justify-start min-h-screen bg-black">
       <div className="w-full h-[80px] flex items-center justify-start px-3 sm:px-2 md:px-3 z-50">
         <Button as={Link} href="/" title={" Home"} reverse>
@@ -16,5 +21,6 @@ export default function Login() {
         <LoginContent />
       </div>
     </div>
+    </>
   );
 }
