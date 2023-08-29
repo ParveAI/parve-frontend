@@ -98,11 +98,14 @@ export const HighlightedButtonWithLoader = (props) => {
   return <LoaderWrapper as={HighlightedButton} {...props} />;
 };
 
-export const CloseButton = (props) => {
+export const CloseButton = ({ classname, ...props }) => {
   return (
     <div
       {...props}
-      className="absolute top-4 right-4 w-8 h-8 cursor-pointer bg-black rounded-full flex items-center justify-center transition-colors hover:bg-[#181818]"
+      className={classNames(
+        "absolute top-4 right-4 w-8 h-8 cursor-pointer bg-black rounded-full flex items-center justify-center transition-colors hover:bg-[#181818]",
+        classname
+      )}
     >
       <Close className="scale-90" fill="white" />
     </div>
