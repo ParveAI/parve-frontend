@@ -66,9 +66,10 @@ const CollectionsView = () => {
 };
 
 const CollectionItem = ({ title, slug }) => {
+  const url = `/collection/${slug}`;
   return (
     <div className="bg-gradient-to-br from-main/50 from-[10%] to-orange-500/50 flex items-start justify-between rounded-md">
-      <Link href={`/collections/${slug}`} className="h-full w-full pl-5 py-5">
+      <Link href={url} className="h-full w-full pl-5 py-5">
         <h5 className="h-full w-[80%] font-[CabinetGrotesk-ExtraBold] text-2xl ">
           {title}
         </h5>
@@ -95,10 +96,7 @@ const CollectionItem = ({ title, slug }) => {
             <Dots fill="white" />
           </div>
         </Dropdown>
-        <Link
-          href={`/collections/${slug}`}
-          className="h-full w-full pl-5 py-5 "
-        ></Link>
+        <Link href={url} className="h-full w-full pl-5 py-5 "></Link>
       </div>
     </div>
   );

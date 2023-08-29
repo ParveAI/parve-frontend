@@ -1,5 +1,5 @@
 import ActionBox from "@/shared/ActionBox";
-import { Magic, Upload } from "@/components/icons";
+import { Magic } from "@/components/icons";
 
 import { useState } from "react";
 import UploadImage from "./components/UploadImage";
