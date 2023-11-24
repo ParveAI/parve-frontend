@@ -28,7 +28,7 @@ const PlaygroundView = () => {
     };
 
     fetch(
-      "https://ewbexihththlkcqybuoa.supabase.co/functions/v1/openai",
+      process.env.NEXT_PUBLIC_API_URL,
       requestOptions
     )
       .then((response) => response.text())
