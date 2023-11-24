@@ -1,7 +1,7 @@
 import ActionBox from "@/shared/ActionBox";
 import { Magic } from "@/components/icons";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadImage from "./components/UploadImage";
 
 const PlaygroundView = () => {
@@ -10,7 +10,7 @@ const PlaygroundView = () => {
   const [transcript, setTranscript] = useState("");
   const [solution, setSolution] = useState("");
 
-  const sendTrancsriptToServer = (extraText = false) => {
+  const sendTrancsriptToServer = async (extraText = false) => {
     !extraText ? setSolveLoader(true) : setRegenerateLoader(true);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -21,27 +21,37 @@ const PlaygroundView = () => {
 
     var requestOptions = {
       method: "POST",
-      headers: myHeaders,
+      headers: {
+        "Content-Type": "text/event-stream",
+      },
       body: raw,
       redirect: "follow",
     };
 
-    fetch(
-      process.env.NEXT_PUBLIC_API_URL,
+    const result = await fetch(
+      "https://llm.ahmetcanisik5458675.workers.dev",
       requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => {
-        setSolution(JSON.parse(result));
-        setSolveLoader(false);
-        setRegenerateLoader(false);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        setSolveLoader(false);
-        setRegenerateLoader(false);
-      });
+    );
+
+    const reader = result.body.pipeThrough(new TextDecoderStream()).getReader();
+
+    while (true) {
+      try {
+        const { value } = await reader.read();
+
+        if (value.includes("[DONE]")) {
+          setSolveLoader(false);
+          setRegenerateLoader(false);
+          break;
+        }
+        const rawValue = JSON.parse(value.replace("data: ", ""));
+        setSolution((oldSolution) => oldSolution + rawValue.response);
+      } catch (error) {
+        break;
+      }
+    }
   };
+
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-start mt-[85px] bg-[#1A1A1A] border-t-[1px] border-zinc-600 xl:overflow-hidden max-md:min-h-full max-md:h-full">
       <div className="max-w-screen w-full h-full flex flex-row items-center justify-center max-md:flex-col max-md:h-fit max-md:justify-start">
