@@ -16,8 +16,7 @@ const PlaygroundView = () => {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      name: "Functions",
-      query: transcript + " " + extraText,
+      prompt: transcript + " " + extraText,
     });
 
     var requestOptions = {
