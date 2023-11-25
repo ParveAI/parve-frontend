@@ -50,6 +50,9 @@ const PlaygroundView = () => {
         break;
       }
     }
+
+    reader.releaseLock();
+    setSolveLoader(false);
   };
 
   return (
