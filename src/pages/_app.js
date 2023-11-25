@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
   let { pathname } = useRouter();
 
   let isOutOfLayout = outOfLayoutRoutes.includes(pathname);
-  if (isOutOfLayout)
+  if (isOutOfLayout) 
     return (
       <Providers>
         <Component {...pageProps} />

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudflare/next-on-pages": "^1.7.4",
     "@headlessui/react": "^1.7.16",
     "classnames": "^2.3.2",
     "copy-to-clipboard": "^3.3.3",
